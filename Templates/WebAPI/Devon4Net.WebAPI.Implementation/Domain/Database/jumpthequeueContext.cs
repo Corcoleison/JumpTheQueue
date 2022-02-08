@@ -23,7 +23,10 @@ namespace Devon4Net.WebAPI.Implementation.Domain.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseNpgsql("Host=localhost;Database=jumpthequeue;Username=postgres;Password=postgres");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

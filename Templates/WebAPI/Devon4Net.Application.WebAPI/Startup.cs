@@ -1,7 +1,9 @@
 using Devon4Net.Application.WebAPI.Configuration;
 using Devon4Net.WebAPI.Implementation.Configure;
+using Devon4Net.WebAPI.Implementation.Domain.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -44,6 +46,11 @@ namespace Devon4Net.Application.WebAPI
         /// <param name="env">environment param</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<jumpthequeueContext>();
+                context.Database.Migrate();
+            }
             app.UseHsts();
             app.UseStaticFiles();
             app.ConfigureDevonFw();
