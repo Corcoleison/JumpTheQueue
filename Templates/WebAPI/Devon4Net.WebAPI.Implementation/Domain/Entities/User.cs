@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Devon4Net.WebAPI.Implementation
+namespace Devon4Net.WebAPI.Implementation.Domain.Entities
 {
     public partial class User
     {
@@ -11,7 +11,14 @@ namespace Devon4Net.WebAPI.Implementation
         }
 
         public string Clientid { get; set; }
+        public Role_t Role { get; set; }
 
         public virtual ICollection<Queue> Queue { get; set; }
+    }
+
+    public enum Role_t
+    {
+        Owner,
+        Employee
     }
 }

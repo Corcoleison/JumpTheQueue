@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Devon4Net.WebAPI.Implementation.Domain.Entities;
 
-namespace Devon4Net.WebAPI.Implementation
+namespace Devon4Net.WebAPI.Implementation.Domain.Database
 {
     public partial class jumpthequeueContext : DbContext
     {
@@ -22,18 +23,11 @@ namespace Devon4Net.WebAPI.Implementation
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=localhost;Database=jumpthequeue;Username=postgres;Password=postgres");
-            }
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasPostgresEnum(null, "role_t", new[] { "Owner", "Employee" })
-                .HasPostgresEnum(null, "status_t", new[] { "notStarted", "waiting", "attending", "attended", "skipped" });
-
             modelBuilder.Entity<AccessCode>(entity =>
             {
                 entity.ToTable("access_code");
@@ -53,6 +47,11 @@ namespace Devon4Net.WebAPI.Implementation
                     .HasColumnType("time without time zone");
 
                 entity.Property(e => e.QueueId).HasColumnName("queue_id");
+
+                entity.Property(e => e.Status)
+                    .HasColumnName("status")
+                    .HasConversion<string>()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.VisitorUid)
                     .HasColumnName("visitor_uid")
@@ -123,6 +122,11 @@ namespace Devon4Net.WebAPI.Implementation
                 entity.Property(e => e.Clientid)
                     .HasColumnName("clientid")
                     .HasColumnType("character varying");
+
+                entity.Property(e => e.Role)
+                    .HasColumnName("role")
+                    .HasConversion<string>()
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<Visitor>(entity =>
