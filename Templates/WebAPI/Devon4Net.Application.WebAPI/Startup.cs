@@ -46,11 +46,6 @@ namespace Devon4Net.Application.WebAPI
         /// <param name="env">environment param</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetRequiredService<jumpthequeueContext>();
-                context.Database.Migrate();
-            }
             app.UseHsts();
             app.UseStaticFiles();
             app.ConfigureDevonFw();
