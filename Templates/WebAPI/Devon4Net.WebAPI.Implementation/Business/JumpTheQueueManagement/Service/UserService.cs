@@ -60,7 +60,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <param name="Clientid"></param>
         /// <param name="role"></param>
         /// <returns></returns>
-        public Task<User> CreateUser(string Clientid, Role_t role)
+        public Task<User> CreateUser(string Clientid, string role)
         {
             Devon4NetLogger.Debug($"SetUser method from service Userervice with value : {Clientid}");
 
@@ -68,8 +68,9 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
             {
                 throw new ArgumentException("The 'Clientid' field can not be null.");
             }
+            Role_t role_parsed = (Role_t)Enum.Parse(typeof(Role_t), role, true);
 
-            return _UserRepository.Create(Clientid, role);
+            return _UserRepository.Create(Clientid, role_parsed);
         }
 
         /// <summary>
@@ -96,7 +97,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <param name="Clientid"></param>
         /// <param name="role"></param>
         /// <returns></returns>
-        public async Task<User> ModifyUserByClientid(string Clientid, Role_t role)
+        public async Task<User> ModifyUserByClientid(string Clientid, string role)
         {
             Devon4NetLogger.Debug($"ModifyUserById method from service Userervice with value : {Clientid}");
             var User = await _UserRepository.GetFirstOrDefault(t => t.Clientid == Clientid).ConfigureAwait(false);
@@ -106,8 +107,10 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
                 throw new UserNotFoundException($"The User with id {Clientid} does not exists and is not possible to modify.");
             }
 
+            Role_t role_parsed = (Role_t)Enum.Parse(typeof(Role_t), role, true);
+
             User.Clientid= Clientid;
-            User.Role = role;
+            User.Role = role_parsed;
 
             return await _UserRepository.Update(User).ConfigureAwait(false);
         }

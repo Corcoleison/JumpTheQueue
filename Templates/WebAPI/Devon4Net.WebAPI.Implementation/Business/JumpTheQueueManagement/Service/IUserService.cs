@@ -32,7 +32,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <param name="Clientid"></param>
         /// <param name="role"></param>
         /// <returns></returns>
-        Task<User> CreateUser(string Clientid, Role_t role);
+        Task<User> CreateUser(string Clientid, string role);
 
         /// <summary>
         /// DeleteUserById
@@ -47,6 +47,6 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <param name="Clientid"></param>
         /// <param name="role"></param>
         /// <returns></returns>
-        Task<User> ModifyUserByClientid(string Clientid, Role_t role);
+        Task<User> ModifyUserByClientid(string Clientid, string role);
     }
 }

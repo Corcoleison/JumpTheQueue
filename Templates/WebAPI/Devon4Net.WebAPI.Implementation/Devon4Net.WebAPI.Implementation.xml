@@ -641,6 +641,32 @@
             the UID of the visitor
             </summary>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException">
+            <summary>
+            Custom exception UserNotFoundException
+            </summary>
+        </member>
+        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException.StatusCode">
+            <summary>
+            The forced http status code to be fired on the exception manager
+            </summary>
+        </member>
+        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException.ShowMessage">
+            <summary>
+            Show the message on the response?
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException"/> class.
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.UserNotFoundException">
             <summary>
             Custom exception UserNotFoundException
@@ -712,7 +738,7 @@
             <param name="Clientid"></param>
             <returns></returns>
         </member>
-        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService.CreateUser(System.String,Devon4Net.WebAPI.Implementation.Domain.Entities.Role_t)">
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService.CreateUser(System.String,System.String)">
             <summary>
             CreateUser
             </summary>
@@ -727,7 +753,7 @@
             <param name="Clientid"></param>
             <returns></returns>
         </member>
-        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService.ModifyUserByClientid(System.String,Devon4Net.WebAPI.Implementation.Domain.Entities.Role_t)">
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService.ModifyUserByClientid(System.String,System.String)">
             <summary>
             ModifyUserById
             </summary>
@@ -800,7 +826,7 @@
             <param name="Clientid"></param>
             <returns></returns>
         </member>
-        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService.CreateUser(System.String,Devon4Net.WebAPI.Implementation.Domain.Entities.Role_t)">
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService.CreateUser(System.String,System.String)">
             <summary>
             Creates the User
             </summary>
@@ -815,7 +841,7 @@
             <param name="Clientid"></param>
             <returns></returns>
         </member>
-        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService.ModifyUserByClientid(System.String,Devon4Net.WebAPI.Implementation.Domain.Entities.Role_t)">
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService.ModifyUserByClientid(System.String,System.String)">
             <summary>
             Modifies te state of the User by id
             </summary>

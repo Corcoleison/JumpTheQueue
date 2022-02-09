@@ -20,7 +20,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Conver
             return new UserDto
             {
                 Clientid = item.Clientid,
-                Role = item.Role,
+                Role = item.Role.ToString(),
             };
         }
 

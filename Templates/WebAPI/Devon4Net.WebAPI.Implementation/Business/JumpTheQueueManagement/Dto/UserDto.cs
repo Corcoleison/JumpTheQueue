@@ -12,6 +12,6 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto
         /// the UID of the visitor
         /// </summary>
         public string Clientid { get; set; }
-        public Role_t Role { get; set; }
+        public string Role { get; set; }
     }
 }
