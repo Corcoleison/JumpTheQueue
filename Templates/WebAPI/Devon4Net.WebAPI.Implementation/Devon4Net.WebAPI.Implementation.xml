@@ -525,6 +525,42 @@
             <param name="mail"></param>
             <returns></returns>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.UserController">
+            <summary>
+            Users controller
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.UserController.#ctor(Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="UserService"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.UserController.GetUser">
+            <summary>
+            Gets the entire list of Users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.UserController.Create(Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.UserDto)">
+            <summary>
+            Creates an User
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.UserController.Delete(System.String)">
+            <summary>
+            Deletes the User provided the id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.UserController.ModifyUser(Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.UserDto)">
+            <summary>
+            Modifies the done status of the User provided the data of the User
+            In this sample, all the data fields are mandatory
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.VisitorController">
             <summary>
             Visitors controller
@@ -561,6 +597,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Converters.UserConverter">
+            <summary>
+            TodoConverter
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Converters.UserConverter.ModelToDto(Devon4Net.WebAPI.Implementation.Domain.Entities.User)">
+            <summary>
+            ModelToDto TODO transformation
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Converters.VisitorConverter">
             <summary>
             TodoConverter
@@ -573,6 +621,16 @@
             <param name="item"></param>
             <returns></returns>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.UserDto">
+            <summary>
+            Visitor definition
+            </summary>
+        </member>
+        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.UserDto.Clientid">
+            <summary>
+            the UID of the visitor
+            </summary>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.VisitorDto">
             <summary>
             Visitor definition
@@ -582,6 +640,32 @@
             <summary>
             the UID of the visitor
             </summary>
+        </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.UserNotFoundException">
+            <summary>
+            Custom exception UserNotFoundException
+            </summary>
+        </member>
+        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.UserNotFoundException.StatusCode">
+            <summary>
+            The forced http status code to be fired on the exception manager
+            </summary>
+        </member>
+        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.UserNotFoundException.ShowMessage">
+            <summary>
+            Show the message on the response?
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.UserNotFoundException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.UserNotFoundException"/> class.
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.UserNotFoundException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.UserNotFoundException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
         </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.VisitorNotFoundException">
             <summary>
@@ -608,6 +692,48 @@
             Initializes a new instance of the <see cref="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.VisitorNotFoundException"/> class.
             </summary>
             <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService">
+            <summary>
+            IUserService
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService.GetUser(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.User,System.Boolean}})">
+            <summary>
+            GetUser
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService.GetUserByClientid(System.String)">
+            <summary>
+            GetUserById
+            </summary>
+            <param name="Clientid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService.CreateUser(System.String,Devon4Net.WebAPI.Implementation.Domain.Entities.Role_t)">
+            <summary>
+            CreateUser
+            </summary>
+            <param name="Clientid"></param>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService.DeleteUserByClientid(System.String)">
+            <summary>
+            DeleteUserById
+            </summary>
+            <param name="Clientid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService.ModifyUserByClientid(System.String,Devon4Net.WebAPI.Implementation.Domain.Entities.Role_t)">
+            <summary>
+            ModifyUserById
+            </summary>
+            <param name="Clientid"></param>
+            <param name="role"></param>
+            <returns></returns>
         </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IVisitorService">
             <summary>
@@ -649,6 +775,54 @@
             <param name="uid"></param>
             <returns></returns>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService">
+            <summary>
+            User service implementation
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService.#ctor(Devon4Net.Domain.UnitOfWork.UnitOfWork.IUnitOfWork{Devon4Net.WebAPI.Implementation.Domain.Database.jumpthequeueContext})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="uoW"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService.GetUser(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.User,System.Boolean}})">
+            <summary>
+            Gets the User
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService.GetUserByClientid(System.String)">
+            <summary>
+            Gets the User by id
+            </summary>
+            <param name="Clientid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService.CreateUser(System.String,Devon4Net.WebAPI.Implementation.Domain.Entities.Role_t)">
+            <summary>
+            Creates the User
+            </summary>
+            <param name="Clientid"></param>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService.DeleteUserByClientid(System.String)">
+            <summary>
+            Deletes the User by id
+            </summary>
+            <param name="Clientid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService.ModifyUserByClientid(System.String,Devon4Net.WebAPI.Implementation.Domain.Entities.Role_t)">
+            <summary>
+            Modifies te state of the User by id
+            </summary>
+            <param name="Clientid"></param>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.VisitorService">
             <summary>
             Visitor service implementation
@@ -658,44 +832,41 @@
             <summary>
             Constructor
             </summary>
-            <param uid="uoW"></param>
+            <param name="uoW"></param>
         </member>
         <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.VisitorService.GetVisitor(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.Visitor,System.Boolean}})">
             <summary>
             Gets the Visitor
             </summary>
-            <param uid="predicate"></param>
+            <param name="predicate"></param>
             <returns></returns>
         </member>
         <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.VisitorService.GetVisitorByUid(System.String)">
             <summary>
             Gets the Visitor by id
             </summary>
-            <param uid="id"></param>
+            <param name="uid"></param>
             <returns></returns>
         </member>
         <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.VisitorService.CreateVisitor(System.String)">
             <summary>
             Creates the Visitor
             </summary>
-            <param uid="uid"></param>
+            <param name="uid"></param>
             <returns></returns>
         </member>
         <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.VisitorService.DeleteVisitorByUid(System.String)">
             <summary>
             Deletes the Visitor by id
             </summary>
-            <param uid="id"></param>
+            <param name="uid"></param>
             <returns></returns>
         </member>
         <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.VisitorService.ModifyVisitorByUid(System.String)">
             <summary>
             Modifies te state of the Visitor by id
             </summary>
-            <param uid="id"></param>
-            <param uid="uid"></param>
-            <param uid="suruid"></param>
-            <param uid="mail"></param>
+            <param name="uid"></param>
             <returns></returns>
         </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.MediatRManagement.Commands.CreateTodoCommand">
@@ -1131,6 +1302,46 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Data.Repositories.UserRepository">
+            <summary>
+            Repository implementation for the User
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.UserRepository.#ctor(Devon4Net.WebAPI.Implementation.Domain.Database.jumpthequeueContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.UserRepository.GetUser(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.User,System.Boolean}})">
+            <summary>
+            Get TODO method
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.UserRepository.GetUserByClientid(System.String)">
+            <summary>
+            Gets the TODO by id
+            </summary>
+            <param name="Clientid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.UserRepository.Create(System.String,Devon4Net.WebAPI.Implementation.Domain.Entities.Role_t)">
+            <summary>
+            Creates the TODO
+            </summary>
+            <param name="Clientid"></param>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.UserRepository.DeleteUserByClientid(System.String)">
+            <summary>
+            Deletes the TODO by id
+            </summary>
+            <param name="Clientid"></param>
+            <returns></returns>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Data.Repositories.VisitorRepository">
             <summary>
             Repository implementation for the Visitor
@@ -1153,16 +1364,14 @@
             <summary>
             Gets the TODO by id
             </summary>
-            <param name="id"></param>
+            <param name="uid"></param>
             <returns></returns>
         </member>
         <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.VisitorRepository.Create(System.String)">
             <summary>
             Creates the TODO
             </summary>
-            <param name="name"></param>
-            <param name="surName"></param>
-            <param name="mail"></param>
+            <param name="uid"></param>
             <returns></returns>
         </member>
         <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.VisitorRepository.DeleteVisitorByUid(System.String)">
@@ -1341,6 +1550,40 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IUserRepository">
+            <summary>
+            UserRepository interface
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IUserRepository.GetUser(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.User,System.Boolean}})">
+            <summary>
+            GetUser
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IUserRepository.GetUserByClientid(System.String)">
+            <summary>
+            GetUserById
+            </summary>
+            <param name="Clientid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IUserRepository.Create(System.String,Devon4Net.WebAPI.Implementation.Domain.Entities.Role_t)">
+            <summary>
+            Create
+            </summary>
+            <param name="Clientid"></param>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IUserRepository.DeleteUserByClientid(System.String)">
+            <summary>
+            DeleteUserById
+            </summary>
+            <param name="Clientid"></param>
+            <returns></returns>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IVisitorRepository">
             <summary>
             VisitorRepository interface
@@ -1357,21 +1600,21 @@
             <summary>
             GetVisitorById
             </summary>
-            <param name="Uid"></param>
+            <param uid="uid"></param>
             <returns></returns>
         </member>
         <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IVisitorRepository.Create(System.String)">
             <summary>
             Create
             </summary>
-            <param name="Uid"></param>
+            <param name="uid"></param>
             <returns></returns>
         </member>
         <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IVisitorRepository.DeleteVisitorByUid(System.String)">
             <summary>
             DeleteVisitorById
             </summary>
-            <param name="Uid"></param>
+            <param name="uid"></param>
             <returns></returns>
         </member>
     </members>

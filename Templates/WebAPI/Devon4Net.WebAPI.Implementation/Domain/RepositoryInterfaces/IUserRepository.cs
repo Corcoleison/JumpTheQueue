@@ -8,36 +8,37 @@ using Devon4Net.WebAPI.Implementation.Domain.Entities;
 namespace Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces
 {
     /// <summary>
-    /// VisitorRepository interface
+    /// UserRepository interface
     /// </summary>
-    public interface IVisitorRepository : IRepository<Visitor>
+    public interface IUserRepository : IRepository<User>
     {
         /// <summary>
-        /// GetVisitor
+        /// GetUser
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        Task<IList<Visitor>> GetVisitor(Expression<Func<Visitor, bool>> predicate = null);
+        Task<IList<User>> GetUser(Expression<Func<User, bool>> predicate = null);
 
         /// <summary>
-        /// GetVisitorById
+        /// GetUserById
         /// </summary>
-        /// <param uid="uid"></param>
+        /// <param name="Clientid"></param>
         /// <returns></returns>
-        Task<Visitor> GetVisitorByUid(string uid);
+        Task<User> GetUserByClientid(string Clientid);
 
         /// <summary>
         /// Create
         /// </summary>
-        /// <param name="uid"></param>
+        /// <param name="Clientid"></param>
+        /// <param name="role"></param>
         /// <returns></returns>
-        Task<Visitor> Create(string uid);
+        Task<User> Create(string Clientid, Role_t role);
 
         /// <summary>
-        /// DeleteVisitorById
+        /// DeleteUserById
         /// </summary>
-        /// <param name="uid"></param>
+        /// <param name="Clientid"></param>
         /// <returns></returns>
-        Task<string> DeleteVisitorByUid(string uid);
+        Task<string> DeleteUserByClientid(string Clientid);
     }
 }

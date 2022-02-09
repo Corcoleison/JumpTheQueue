@@ -25,7 +25,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param uid="uoW"></param>
+        /// <param name="uoW"></param>
         public VisitorService(IUnitOfWork<jumpthequeueContext> uoW) : base(uoW)
         {
             _VisitorRepository = uoW.Repository<IVisitorRepository>();
@@ -34,7 +34,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <summary>
         /// Gets the Visitor
         /// </summary>
-        /// <param uid="predicate"></param>
+        /// <param name="predicate"></param>
         /// <returns></returns>
         public async Task<IEnumerable<VisitorDto>> GetVisitor(Expression<Func<Visitor, bool>> predicate = null)
         {
@@ -46,7 +46,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <summary>
         /// Gets the Visitor by id
         /// </summary>
-        /// <param uid="id"></param>
+        /// <param name="uid"></param>
         /// <returns></returns>
         public Task<Visitor> GetVisitorByUid(string uid)
         {
@@ -57,7 +57,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <summary>
         /// Creates the Visitor
         /// </summary>
-        /// <param uid="uid"></param>
+        /// <param name="uid"></param>
         /// <returns></returns>
         public Task<Visitor> CreateVisitor(string uid)
         {
@@ -74,7 +74,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <summary>
         /// Deletes the Visitor by id
         /// </summary>
-        /// <param uid="id"></param>
+        /// <param name="uid"></param>
         /// <returns></returns>
         public async Task<string> DeleteVisitorByUid(string uid)
         {
@@ -92,10 +92,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <summary>
         /// Modifies te state of the Visitor by id
         /// </summary>
-        /// <param uid="id"></param>
-        /// <param uid="uid"></param>
-        /// <param uid="suruid"></param>
-        /// <param uid="mail"></param>
+        /// <param name="uid"></param>
         /// <returns></returns>
         public async Task<Visitor> ModifyVisitorByUid(string uid)
         {
@@ -104,7 +101,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
 
             if (Visitor == null)
             {
-                throw new VisitorNotFoundException($"The Visitor with id {uid} does not exists and is not possible to delete.");
+                throw new VisitorNotFoundException($"The Visitor with id {uid} does not exists and is not possible to modify.");
             }
 
             Visitor.Uid= uid;

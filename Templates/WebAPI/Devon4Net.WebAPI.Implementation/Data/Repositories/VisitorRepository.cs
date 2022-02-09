@@ -37,20 +37,18 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
         /// <summary>
         /// Gets the TODO by id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="uid"></param>
         /// <returns></returns>
-        public Task<Visitor> GetVisitorByUid(string id)
+        public Task<Visitor> GetVisitorByUid(string uid)
         {
-            Devon4NetLogger.Debug($"GetTodoById method from repository Visitorervice with value : {id}");
-            return GetFirstOrDefault(t => t.Uid == id);
+            Devon4NetLogger.Debug($"GetTodoById method from repository Visitorervice with value : {uid}");
+            return GetFirstOrDefault(t => t.Uid == uid);
         }
 
         /// <summary>
         /// Creates the TODO
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="surName"></param>
-        /// <param name="mail"></param>
+        /// <param name="uid"></param>
         /// <returns></returns>
         public Task<Visitor> Create(string uid)
         {

@@ -3,15 +3,17 @@ using System;
 using Devon4Net.WebAPI.Implementation.Domain.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Devon4Net.WebAPI.Implementation.Migrations
 {
     [DbContext(typeof(jumpthequeueContext))]
-    partial class jumpthequeueContextModelSnapshot : ModelSnapshot
+    [Migration("20220209121359_InsertUserData")]
+    partial class InsertUserData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

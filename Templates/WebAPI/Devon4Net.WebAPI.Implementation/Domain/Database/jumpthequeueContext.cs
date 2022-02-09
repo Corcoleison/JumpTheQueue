@@ -144,6 +144,12 @@ namespace Devon4Net.WebAPI.Implementation.Domain.Database
                     .HasColumnType("character varying");
             });
 
+            modelBuilder.Entity<User>().HasData(
+                        new User { Clientid="OP1", Role=Role_t.Owner },
+                        new User { Clientid = "OP2", Role = Role_t.Owner },
+                        new User { Clientid = "OP3", Role = Role_t.Owner }
+            );;
+
             OnModelCreatingPartial(modelBuilder);
         }
 
