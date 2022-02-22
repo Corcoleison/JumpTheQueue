@@ -39,7 +39,7 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public Task<Visitor> GetVisitorByUid(string uid)
+        public Task<Visitor> GetVisitorByUid(Guid uid)
         {
             Devon4NetLogger.Debug($"GetTodoById method from repository Visitorervice with value : {uid}");
             return GetFirstOrDefault(t => t.Uid == uid);
@@ -50,7 +50,7 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public Task<Visitor> Create(string uid)
+        public Task<Visitor> Create(Guid uid)
         {
             Devon4NetLogger.Debug($"SetTodo method from repository Visitorervice with value : {uid}");
             return Create(new Visitor{ Uid = uid});
@@ -61,7 +61,7 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public async Task<string> DeleteVisitorByUid(string uid)
+        public async Task<Guid> DeleteVisitorByUid(Guid uid)
         {
             Devon4NetLogger.Debug($"DeleteTodoById method from repository Visitorervice with value : {uid}");
             var deleted = await Delete(t => t.Uid == uid).ConfigureAwait(false);

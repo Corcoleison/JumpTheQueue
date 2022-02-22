@@ -4,10 +4,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Devon4Net.WebAPI.Implementation.Migrations
 {
-    public partial class CreateDatabase : Migration
+    public partial class initialBBDD : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("Npgsql:PostgresExtension:uuid-ossp", ",,");
+
             migrationBuilder.CreateTable(
                 name: "user",
                 columns: table => new
@@ -24,7 +27,7 @@ namespace Devon4Net.WebAPI.Implementation.Migrations
                 name: "visitor",
                 columns: table => new
                 {
-                    uid = table.Column<string>(type: "character varying", nullable: false)
+                    uid = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,8 +71,8 @@ namespace Devon4Net.WebAPI.Implementation.Migrations
                     createdtime = table.Column<TimeSpan>(type: "time without time zone", nullable: true),
                     endtime = table.Column<TimeSpan>(type: "time without time zone", nullable: true),
                     status = table.Column<string>(maxLength: 50, nullable: false),
-                    visitor_uid = table.Column<string>(type: "character varying", nullable: true),
-                    queue_id = table.Column<int>(nullable: true)
+                    visitor_uid = table.Column<Guid>(nullable: false),
+                    queue_id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -81,11 +84,21 @@ namespace Devon4Net.WebAPI.Implementation.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "fk_visitor",
+                        name: "access_code_visitor_uid_fk",
                         column: x => x.visitor_uid,
                         principalTable: "visitor",
                         principalColumn: "uid",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "user",
+                columns: new[] { "clientid", "role" },
+                values: new object[,]
+                {
+                    { "OP1", "Owner" },
+                    { "OP2", "Owner" },
+                    { "OP3", "Owner" }
                 });
 
             migrationBuilder.CreateIndex(

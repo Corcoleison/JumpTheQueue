@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto
@@ -10,6 +11,6 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto
         /// <summary>
         /// the UID of the visitor
         /// </summary>
-        public string Uid { get; set; }
+        public Guid Uid { get; set; }
     }
 }

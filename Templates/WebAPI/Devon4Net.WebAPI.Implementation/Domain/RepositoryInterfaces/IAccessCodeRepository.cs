@@ -31,14 +31,14 @@ namespace Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces
         /// </summary>
         /// <param name="queueid"></param>
         /// <param name="visitoruid"></param>
-        Task<AccessCode> GetAccessCodeByVisitorAndQueue(string visitoruid, int? queueid);
+        Task<AccessCode> GetAccessCodeByVisitorAndQueue(Guid visitoruid, int queueid);
 
         /// <summary>
         /// GetAccessCodeByQueue
         /// </summary>
         /// <param name="queueid"></param>
         /// <returns></returns>
-        Task<AccessCode> GetLastAccessCodeByQueue(int? queueid);
+        Task<AccessCode> GetLastAccessCodeByQueue(int queueid);
 
         /// <summary>
         /// Create
@@ -50,7 +50,7 @@ namespace Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces
         /// <param name="visitoruid"></param>
         /// <param name="queueId"></param>
         /// <returns></returns>
-        Task<AccessCode> Create(string code, TimeSpan? createdtime, TimeSpan? endtime, Status_t status, string visitoruid, int? queueId);
+        Task<AccessCode> Create(string code, TimeSpan? createdtime, TimeSpan? endtime, Status_t status, Guid visitoruid, int queueId);
 
         /// <summary>
         /// DeleteAccessCodeById

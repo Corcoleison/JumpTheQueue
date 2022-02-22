@@ -21,6 +21,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
     public class AccessCodeService: Service<jumpthequeueContext>, IAccessCodeService
     {
         private readonly IAccessCodeRepository _AccessCodeRepository;
+        private readonly IVisitorRepository _VisitorRepository;
 
         /// <summary>
         /// Constructor
@@ -29,6 +30,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         public AccessCodeService(IUnitOfWork<jumpthequeueContext> uoW) : base(uoW)
         {
             _AccessCodeRepository = uoW.Repository<IAccessCodeRepository>();
+            _VisitorRepository = uoW.Repository<IVisitorRepository>();
         }
 
         /// <summary>
@@ -59,7 +61,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// </summary>
         /// <param name="queueid"></param>
         /// <param name="visitoruid"></param>
-        public Task<AccessCode> GetAccessCodeByVisitorAndQueue(string visitoruid, int? queueid)
+        public Task<AccessCode> GetAccessCodeByVisitorAndQueue(Guid visitoruid, int queueid)
         {
             Devon4NetLogger.Debug($"GetAccessCodeById method from service AccessCodeervice with value : {visitoruid} and {queueid}");
             return _AccessCodeRepository.GetAccessCodeByVisitorAndQueue(visitoruid,queueid);
@@ -70,7 +72,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// </summary>
         /// <param name="queueid"></param>
         /// <returns></returns>
-        public async Task<AccessCode> GetLastAccessCodeByQueue(int? queueid)
+        public async Task<AccessCode> GetLastAccessCodeByQueue(int queueid)
         {
             Devon4NetLogger.Debug($"GetAccessCodeById method from service AccessCodeervice with value : {queueid}");
             var list= await _AccessCodeRepository.GetAccessCode(t => t.QueueId == queueid).ConfigureAwait(false);
@@ -84,8 +86,10 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <param name="visitoruid"></param>
         /// <param name="queueId"></param>
         /// <returns></returns>
-        public async Task<AccessCode> CreateAccessCode(string visitoruid, int? queueId)
+        public async Task<AccessCode> CreateAccessCode(int queueId)
         {
+            Guid visitoruid = Guid.NewGuid();
+            await _VisitorRepository.Create(visitoruid).ConfigureAwait(false);
             Devon4NetLogger.Debug($"SetAccessCode method from service AccessCodeervice with values : {visitoruid} and {queueId}");
             string code = await ChooseCodeAsync(visitoruid, queueId).ConfigureAwait(false);
             Status_t statusCreated = Status_t.notStarted;
@@ -128,7 +132,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <param name="visitoruid"></param>
         /// <param name="queueId"></param>
         /// <returns></returns>
-        public async Task<AccessCode> ModifyAccessCodeByCode(string code, string createdtime, string endtime, string status, string visitoruid, int? queueId)
+        public async Task<AccessCode> ModifyAccessCodeByCode(string code, string createdtime, string endtime, string status, Guid visitoruid, int queueId)
         {
             Devon4NetLogger.Debug($"ModifyAccessCodeById method from service AccessCodeervice with value : {code}");
             var AccessCode = await _AccessCodeRepository.GetFirstOrDefault(t => t.Code == code).ConfigureAwait(false);
@@ -153,7 +157,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
             return await _AccessCodeRepository.Update(AccessCode).ConfigureAwait(false);
         }
 
-        private async Task<string> ChooseCodeAsync(string visitoruid, int? queueid)
+        private async Task<string> ChooseCodeAsync(Guid visitoruid, int queueid)
         {
             Devon4NetLogger.Debug("Enters ChooseCodeAsync to choose next code");
             string resultCode = "Q001";
@@ -163,20 +167,16 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
                 Devon4NetLogger.Debug($"Exit ChooseCodeAsync to choose next code {resultCode}");
                 return resultCode;
             }
-            else if(lastAC.Status==Status_t.attended || lastAC.Status == Status_t.skipped)
+            else
             {
                 string numberS = new String(lastAC.Code.Where(Char.IsDigit).ToArray());
                 int number = Int32.Parse(numberS);
                 number++;
-                resultCode = "Q"+number.ToString("000");
                 if (number > 999)
                 {
-                    throw new ArgumentException($"Number {number} more than 999 not yet implemented");
+                    number = 1;
                 }
-            }
-            else
-            {
-                throw new ArgumentException($"Your status {lastAC.Status} does not let create a new ticket, you have to keep the one you have");
+                resultCode = "Q"+number.ToString("000");
             }
             Devon4NetLogger.Debug($"Exit ChooseCodeAsync to choose next code {resultCode}");
             return resultCode;

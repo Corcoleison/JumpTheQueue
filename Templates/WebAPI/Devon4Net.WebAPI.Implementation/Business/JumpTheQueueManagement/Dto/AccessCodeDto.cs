@@ -18,7 +18,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto
         public string Createdtime { get; set; }
         public string Endtime { get; set; }
         public string Status { get; set; }
-        public string VisitorUid { get; set; }
-        public int? QueueId { get; set; }
+        public Guid VisitorUid { get; set; }
+        public int QueueId { get; set; }
     }
 }

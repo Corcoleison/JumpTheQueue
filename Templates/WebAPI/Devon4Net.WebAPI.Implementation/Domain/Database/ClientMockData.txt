@@ -1,0 +1,7 @@
+﻿modelBuilder.Entity<User>().HasData(
+                        new User { Clientid="OP1", Role=Role_t.Owner },
+                        new User { Clientid = "OP2", Role = Role_t.Owner },
+                        new User { Clientid = "OP3", Role = Role_t.Owner }
+            );
+
+dotnet ef dbcontext scaffold "Host=localhost;Database=jumpthequeue;Username=postgres;Password=postgres" Npgsql.EntityFrameworkCore.PostgreSQL

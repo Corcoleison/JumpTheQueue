@@ -10,8 +10,8 @@ namespace Devon4Net.WebAPI.Implementation.Domain.Entities
         public TimeSpan? Createdtime { get; set; }
         public TimeSpan? Endtime { get; set; }
         public Status_t Status { get; set; }
-        public string VisitorUid { get; set; }
-        public int? QueueId { get; set; }
+        public Guid VisitorUid { get; set; }
+        public int QueueId { get; set; }
 
         public virtual Queue Queue { get; set; }
         public virtual Visitor VisitorU { get; set; }

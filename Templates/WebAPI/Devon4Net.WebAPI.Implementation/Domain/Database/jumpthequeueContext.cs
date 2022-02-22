@@ -1,9 +1,9 @@
 ﻿using System;
+using Devon4Net.WebAPI.Implementation.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Devon4Net.WebAPI.Implementation.Domain.Entities;
 
-namespace Devon4Net.WebAPI.Implementation.Domain.Database
+namespace Devon4Net.WebAPI.Implementation
 {
     public partial class jumpthequeueContext : DbContext
     {
@@ -25,6 +25,7 @@ namespace Devon4Net.WebAPI.Implementation.Domain.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseNpgsql("Host=localhost;Database=jumpthequeue;Username=postgres;Password=postgres");
             }
         }
@@ -34,6 +35,10 @@ namespace Devon4Net.WebAPI.Implementation.Domain.Database
             modelBuilder.Entity<AccessCode>(entity =>
             {
                 entity.ToTable("access_code");
+
+                entity.HasIndex(e => e.QueueId);
+
+                entity.HasIndex(e => e.VisitorUid);
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -56,24 +61,26 @@ namespace Devon4Net.WebAPI.Implementation.Domain.Database
                     .HasConversion<string>()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.VisitorUid)
-                    .HasColumnName("visitor_uid")
-                    .HasColumnType("character varying");
+                entity.Property(e => e.VisitorUid).HasColumnName("visitor_uid");
 
                 entity.HasOne(d => d.Queue)
                     .WithMany(p => p.AccessCode)
                     .HasForeignKey(d => d.QueueId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("access_code_queue_id_fkey");
 
                 entity.HasOne(d => d.VisitorU)
                     .WithMany(p => p.AccessCode)
                     .HasForeignKey(d => d.VisitorUid)
-                    .HasConstraintName("fk_visitor");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("access_code_visitor_uid_fk");
             });
 
             modelBuilder.Entity<Queue>(entity =>
             {
                 entity.ToTable("queue");
+
+                entity.HasIndex(e => e.UserClientid);
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -141,14 +148,16 @@ namespace Devon4Net.WebAPI.Implementation.Domain.Database
 
                 entity.Property(e => e.Uid)
                     .HasColumnName("uid")
-                    .HasColumnType("character varying");
+                    .ValueGeneratedNever();
             });
 
             modelBuilder.Entity<User>().HasData(
-                        new User { Clientid="OP1", Role=Role_t.Owner },
+                        new User { Clientid = "OP1", Role = Role_t.Owner },
                         new User { Clientid = "OP2", Role = Role_t.Owner },
                         new User { Clientid = "OP3", Role = Role_t.Owner }
-            );;
+            );
+
+            modelBuilder.HasPostgresExtension("uuid-ossp");
 
             OnModelCreatingPartial(modelBuilder);
         }

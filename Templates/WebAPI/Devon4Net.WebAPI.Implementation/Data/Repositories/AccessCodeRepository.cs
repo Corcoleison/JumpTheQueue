@@ -50,7 +50,7 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
         /// </summary>
         /// <param name="queueid"></param>
         /// <param name="visitoruid"></param>
-        public Task<AccessCode> GetAccessCodeByVisitorAndQueue(string visitoruid, int? queueid)
+        public Task<AccessCode> GetAccessCodeByVisitorAndQueue(Guid visitoruid, int queueid)
         {
             Devon4NetLogger.Debug($"GetTodoById method from repository AccessCodeervice with value : {visitoruid} and {queueid}");
             return GetFirstOrDefault(t => t.VisitorUid == visitoruid && t.QueueId == queueid);
@@ -61,7 +61,7 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
         /// </summary>
         /// <param name="queueid"></param>
         /// <returns></returns>
-        public Task<AccessCode> GetLastAccessCodeByQueue(int? queueid)
+        public Task<AccessCode> GetLastAccessCodeByQueue(int queueid)
         {
             Devon4NetLogger.Debug($"GetTodoById method from repository AccessCodeervice with value : {queueid}");
             return GetLastOrDefault(t => t.QueueId == queueid);
@@ -77,7 +77,7 @@ namespace Devon4Net.WebAPI.Implementation.Data.Repositories
         /// <param name="visitoruid"></param>
         /// <param name="queueId"></param>
         /// <returns></returns>
-        public Task<AccessCode> Create(string code, TimeSpan? createdtime, TimeSpan? endtime, Status_t status, string visitoruid, int? queueId)
+        public Task<AccessCode> Create(string code, TimeSpan? createdtime, TimeSpan? endtime, Status_t status, Guid visitoruid, int queueId)
         {
             Devon4NetLogger.Debug($"SetTodo method from repository AccessCodeervice with value : {code}");
             return Create(new AccessCode{ Code= code, Createdtime=createdtime, Endtime= endtime, Status= status, VisitorUid= visitoruid, QueueId= queueId});

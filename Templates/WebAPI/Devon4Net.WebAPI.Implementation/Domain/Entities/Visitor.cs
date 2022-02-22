@@ -10,7 +10,7 @@ namespace Devon4Net.WebAPI.Implementation.Domain.Entities
             AccessCode = new HashSet<AccessCode>();
         }
 
-        public string Uid { get; set; }
+        public Guid Uid { get; set; }
 
         public virtual ICollection<AccessCode> AccessCode { get; set; }
     }

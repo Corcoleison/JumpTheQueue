@@ -48,7 +48,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public Task<Visitor> GetVisitorByUid(string uid)
+        public Task<Visitor> GetVisitorByUid(Guid uid)
         {
             Devon4NetLogger.Debug($"GetVisitorById method from service Visitorervice with value : {uid}");
             return _VisitorRepository.GetVisitorByUid(uid);
@@ -59,11 +59,11 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public Task<Visitor> CreateVisitor(string uid)
+        public Task<Visitor> CreateVisitor(Guid uid)
         {
             Devon4NetLogger.Debug($"SetVisitor method from service Visitorervice with value : {uid}");
 
-            if (string.IsNullOrEmpty(uid) || string.IsNullOrWhiteSpace(uid))
+            if (uid == null || uid == Guid.Empty)
             {
                 throw new ArgumentException("The 'uid' field can not be null.");
             }
@@ -76,7 +76,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public async Task<string> DeleteVisitorByUid(string uid)
+        public async Task<Guid> DeleteVisitorByUid(Guid uid)
         {
             Devon4NetLogger.Debug($"DeleteVisitorById method from service Visitorervice with value : {uid}");
             var Visitor = await _VisitorRepository.GetFirstOrDefault(t => t.Uid == uid).ConfigureAwait(false);
@@ -94,7 +94,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public async Task<Visitor> ModifyVisitorByUid(string uid)
+        public async Task<Visitor> ModifyVisitorByUid(Guid uid)
         {
             Devon4NetLogger.Debug($"ModifyVisitorById method from service Visitorervice with value : {uid}");
             var Visitor = await _VisitorRepository.GetFirstOrDefault(t => t.Uid == uid).ConfigureAwait(false);

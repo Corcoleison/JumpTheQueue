@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
@@ -55,10 +56,10 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Contro
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> Create([Required] string visitoruid, [Required] int? queueid)
+        public async Task<ActionResult> Create([Required] int queueid)
         {
             Devon4NetLogger.Debug("Executing GetAccessCode from controller AccessCodeController");
-            var result = await _AccessCodeService.CreateAccessCode(visitoruid, queueid).ConfigureAwait(false);
+            var result = await _AccessCodeService.CreateAccessCode(queueid).ConfigureAwait(false);
             return StatusCode(StatusCodes.Status201Created, result);
         }
 

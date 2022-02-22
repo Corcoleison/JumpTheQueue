@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
@@ -70,7 +71,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Contro
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> Delete([Required]string VisitorUid)
+        public async Task<ActionResult> Delete([Required]Guid VisitorUid)
         {
             Devon4NetLogger.Debug("Executing GetVisitor from controller VisitorController");
             return Ok(await _VisitorService.DeleteVisitorByUid(VisitorUid).ConfigureAwait(false));
@@ -89,7 +90,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Contro
         public async Task<ActionResult> ModifyVisitor(VisitorDto VisitorDto)
         {
             Devon4NetLogger.Debug("Executing ModifyVisitor from controller VisitorController");
-            if (string.IsNullOrEmpty(VisitorDto.Uid))
+            if (VisitorDto.Uid == null || VisitorDto.Uid == Guid.Empty)
             {
                 return BadRequest("The id of the Visitor must be provided");
             }

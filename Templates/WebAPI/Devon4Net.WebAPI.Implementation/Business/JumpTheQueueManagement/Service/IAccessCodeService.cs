@@ -32,14 +32,14 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <param name="queueid"></param>
         /// <param name="visitoruid"></param>
         /// <returns></returns>
-        Task<AccessCode> GetAccessCodeByVisitorAndQueue(string visitoruid, int? queueid);
+        Task<AccessCode> GetAccessCodeByVisitorAndQueue(Guid visitoruid, int queueid);
 
         /// <summary>
         /// Gets the LAST AccessCode by queue id
         /// </summary>
         /// <param name="queueid"></param>
         /// <returns></returns>
-        Task<AccessCode> GetLastAccessCodeByQueue(int? queueid);
+        Task<AccessCode> GetLastAccessCodeByQueue(int queueid);
 
         /// <summary>
         /// CreateAccessCode
@@ -47,7 +47,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <param name="visitoruid"></param>
         /// <param name="queueId"></param>
         /// <returns></returns>
-        Task<AccessCode> CreateAccessCode(string visitoruid, int? queueId);
+        Task<AccessCode> CreateAccessCode(int queueId);
 
         /// <summary>
         /// DeleteAccessCodeById
@@ -66,6 +66,6 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <param name="visitoruid"></param>
         /// <param name="queueId"></param>
         /// <returns></returns>
-        Task<AccessCode> ModifyAccessCodeByCode(string code, string createdtime, string endtime, string status, string visitoruid, int? queueId);
+        Task<AccessCode> ModifyAccessCodeByCode(string code, string createdtime, string endtime, string status, Guid visitoruid, int queueId);
     }
 }

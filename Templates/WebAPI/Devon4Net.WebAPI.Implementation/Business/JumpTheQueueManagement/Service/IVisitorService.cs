@@ -24,27 +24,27 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        Task<Visitor> GetVisitorByUid(string uid);
+        Task<Visitor> GetVisitorByUid(Guid uid);
 
         /// <summary>
         /// CreateVisitor
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        Task<Visitor> CreateVisitor(string uid);
+        Task<Visitor> CreateVisitor(Guid uid);
 
         /// <summary>
         /// DeleteVisitorById
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        Task<string> DeleteVisitorByUid(string uid);
+        Task<Guid> DeleteVisitorByUid(Guid uid);
 
         /// <summary>
         /// ModifyVisitorById
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        Task<Visitor> ModifyVisitorByUid(string uid);
+        Task<Visitor> ModifyVisitorByUid(Guid uid);
     }
 }

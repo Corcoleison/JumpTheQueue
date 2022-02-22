@@ -24,20 +24,20 @@ namespace Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces
         /// </summary>
         /// <param uid="uid"></param>
         /// <returns></returns>
-        Task<Visitor> GetVisitorByUid(string uid);
+        Task<Visitor> GetVisitorByUid(Guid uid);
 
         /// <summary>
         /// Create
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        Task<Visitor> Create(string uid);
+        Task<Visitor> Create(Guid uid);
 
         /// <summary>
         /// DeleteVisitorById
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        Task<string> DeleteVisitorByUid(string uid);
+        Task<Guid> DeleteVisitorByUid(Guid uid);
     }
 }
