@@ -21,6 +21,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
     public class UserService: Service<jumpthequeueContext>, IUserService
     {
         private readonly IUserRepository _UserRepository;
+        private readonly IQueueRepository _QueueRepository;
 
         /// <summary>
         /// Constructor
@@ -29,6 +30,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         public UserService(IUnitOfWork<jumpthequeueContext> uoW) : base(uoW)
         {
             _UserRepository = uoW.Repository<IUserRepository>();
+            _QueueRepository = uoW.Repository<IQueueRepository>();
         }
 
         /// <summary>
@@ -40,6 +42,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         {
             Devon4NetLogger.Debug("GetUser method from service Userervice");
             var result = await _UserRepository.GetUser(predicate).ConfigureAwait(false);
+            //var queues = await _QueueRepository.GetQueue(predicate).ConfigureAwait(false);
             return result.Select(UserConverter.ModelToDto);
         }
 

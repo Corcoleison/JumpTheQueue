@@ -13,7 +13,7 @@ namespace Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces
     public interface ITodoRepository : IRepository<Todos>
     {
         /// <summary>
-        /// 
+        /// GetTodo
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>

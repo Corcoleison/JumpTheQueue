@@ -525,6 +525,78 @@
             <param name="mail"></param>
             <returns></returns>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.AccessCodeController">
+            <summary>
+            AccessCodes controller
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.AccessCodeController.#ctor(Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IAccessCodeService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="AccessCodeService"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.AccessCodeController.GetAccessCodeByVisitorAndQueue(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Gets the AccessCode of a specific visitor in a specific queue
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.AccessCodeController.Create(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Creates an AccessCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.AccessCodeController.Delete(System.String)">
+            <summary>
+            Deletes the AccessCode provided the id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.AccessCodeController.ModifyAccessCode(Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.AccessCodeDto)">
+            <summary>
+            Modifies the done status of the AccessCode provided the data of the AccessCode
+            In this sample, all the data fields are mandatory
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.QueueController">
+            <summary>
+            Queues controller
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.QueueController.#ctor(Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IQueueService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="QueueService"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.QueueController.GetQueue">
+            <summary>
+            Gets the entire list of Queues
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.QueueController.Create(Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.QueueDto)">
+            <summary>
+            Creates an Queue
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.QueueController.Delete(System.Int32)">
+            <summary>
+            Deletes the Queue provided the id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.QueueController.ModifyQueue(Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.QueueDto)">
+            <summary>
+            Modifies the done status of the Queue provided the data of the Queue
+            In this sample, all the data fields are mandatory
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.UserController">
             <summary>
             Users controller
@@ -597,6 +669,30 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Converters.AccessCodeConverter">
+            <summary>
+            TodoConverter
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Converters.AccessCodeConverter.ModelToDto(Devon4Net.WebAPI.Implementation.Domain.Entities.AccessCode)">
+            <summary>
+            ModelToDto TODO transformation
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Converters.QueueConverter">
+            <summary>
+            TodoConverter
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Converters.QueueConverter.ModelToDto(Devon4Net.WebAPI.Implementation.Domain.Entities.Queue)">
+            <summary>
+            ModelToDto TODO transformation
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Converters.UserConverter">
             <summary>
             TodoConverter
@@ -621,6 +717,26 @@
             <param name="item"></param>
             <returns></returns>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.AccessCodeDto">
+            <summary>
+            Visitor definition
+            </summary>
+        </member>
+        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.AccessCodeDto.Id">
+            <summary>
+            the UID of the visitor
+            </summary>
+        </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.QueueDto">
+            <summary>
+            Visitor definition
+            </summary>
+        </member>
+        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.QueueDto.Id">
+            <summary>
+            the UID of the visitor
+            </summary>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto.UserDto">
             <summary>
             Visitor definition
@@ -641,29 +757,55 @@
             the UID of the visitor
             </summary>
         </member>
-        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException">
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.AccessCodeNotFoundException">
             <summary>
-            Custom exception UserNotFoundException
+            Custom exception AccessCodeNotFoundException
             </summary>
         </member>
-        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException.StatusCode">
+        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.AccessCodeNotFoundException.StatusCode">
             <summary>
             The forced http status code to be fired on the exception manager
             </summary>
         </member>
-        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException.ShowMessage">
+        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.AccessCodeNotFoundException.ShowMessage">
             <summary>
             Show the message on the response?
             </summary>
         </member>
-        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException.#ctor">
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.AccessCodeNotFoundException.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException"/> class.
+            Initializes a new instance of the <see cref="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.AccessCodeNotFoundException"/> class.
             </summary>
         </member>
-        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException.#ctor(System.String)">
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.AccessCodeNotFoundException.#ctor(System.String)">
             <summary>
-            Initializes a new instance of the <see cref="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.RoleBadException"/> class.
+            Initializes a new instance of the <see cref="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.AccessCodeNotFoundException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.QueueNotFoundException">
+            <summary>
+            Custom exception QueueNotFoundException
+            </summary>
+        </member>
+        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.QueueNotFoundException.StatusCode">
+            <summary>
+            The forced http status code to be fired on the exception manager
+            </summary>
+        </member>
+        <member name="P:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.QueueNotFoundException.ShowMessage">
+            <summary>
+            Show the message on the response?
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.QueueNotFoundException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.QueueNotFoundException"/> class.
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.QueueNotFoundException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.QueueNotFoundException"/> class.
             </summary>
             <param name="message">The message that describes the error.</param>
         </member>
@@ -718,6 +860,189 @@
             Initializes a new instance of the <see cref="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions.VisitorNotFoundException"/> class.
             </summary>
             <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.AccessCodeService">
+            <summary>
+            AccessCode service implementation
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.AccessCodeService.#ctor(Devon4Net.Domain.UnitOfWork.UnitOfWork.IUnitOfWork{Devon4Net.WebAPI.Implementation.Domain.Database.jumpthequeueContext})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="uoW"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.AccessCodeService.GetAccessCode(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.AccessCode,System.Boolean}})">
+            <summary>
+            Gets the AccessCode
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.AccessCodeService.GetAccessCodeByCode(System.String)">
+            <summary>
+            Gets the AccessCode by code
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.AccessCodeService.GetAccessCodeByVisitorAndQueue(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Gets the AccessCode by queue id
+            </summary>
+            <param name="queueid"></param>
+            <param name="visitoruid"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.AccessCodeService.GetLastAccessCodeByQueue(System.Nullable{System.Int32})">
+            <summary>
+            Gets the AccessCode by queue id
+            </summary>
+            <param name="queueid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.AccessCodeService.CreateAccessCode(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Creates the AccessCode
+            </summary>
+            <param name="visitoruid"></param>
+            <param name="queueId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.AccessCodeService.DeleteAccessCodeByCode(System.String)">
+            <summary>
+            Deletes the AccessCode by id
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.AccessCodeService.ModifyAccessCodeByCode(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Modifies te state of the AccessCode by id
+            </summary>
+            <param name="code"></param>
+            <param name="createdtime"></param>
+            <param name="endtime"></param>
+            <param name="status"></param>
+            <param name="visitoruid"></param>
+            <param name="queueId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IAccessCodeService">
+            <summary>
+            IAccessCodeService
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IAccessCodeService.GetAccessCode(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.AccessCode,System.Boolean}})">
+            <summary>
+            GetAccessCode
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IAccessCodeService.GetAccessCodeByCode(System.String)">
+            <summary>
+            GetAccessCodeById
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IAccessCodeService.GetAccessCodeByVisitorAndQueue(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Gets the AccessCode by queue id
+            </summary>
+            <param name="queueid"></param>
+            <param name="visitoruid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IAccessCodeService.GetLastAccessCodeByQueue(System.Nullable{System.Int32})">
+            <summary>
+            Gets the LAST AccessCode by queue id
+            </summary>
+            <param name="queueid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IAccessCodeService.CreateAccessCode(System.String,System.Nullable{System.Int32})">
+            <summary>
+            CreateAccessCode
+            </summary>
+            <param name="visitoruid"></param>
+            <param name="queueId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IAccessCodeService.DeleteAccessCodeByCode(System.String)">
+            <summary>
+            DeleteAccessCodeById
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IAccessCodeService.ModifyAccessCodeByCode(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            ModifyAccessCodeById
+            </summary>
+            <param name="code"></param>
+            <param name="createdtime"></param>
+            <param name="endtime"></param>
+            <param name="status"></param>
+            <param name="visitoruid"></param>
+            <param name="queueId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IQueueService">
+            <summary>
+            IQueueService
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IQueueService.GetQueue(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.Queue,System.Boolean}})">
+            <summary>
+            GetQueue
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IQueueService.GetQueueById(System.Int32)">
+            <summary>
+            GetQueueById
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IQueueService.CreateQueue(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String)">
+            <summary>
+            CreateQueue
+            </summary>
+            <param name="name"></param>
+            <param name="logo"></param>
+            <param name="accesslink"></param>
+            <param name="minattentiontime"></param>
+            <param name="opentime"></param>
+            <param name="closetime"></param>
+            <param name="started"></param>ç
+            <param name="closed"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IQueueService.DeleteQueueById(System.Int32)">
+            <summary>
+            DeleteQueueById
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IQueueService.ModifyQueueById(System.Int32,System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String)">
+            <summary>
+            ModifyQueueById
+            </summary>
+            <param name="id"></param>
+            <param name="name"></param>
+            <param name="logo"></param>
+            <param name="accesslink"></param>
+            <param name="minattentiontime"></param>
+            <param name="opentime"></param>
+            <param name="closetime"></param>
+            <param name="started"></param>ç
+            <param name="closed"></param>
+            <param name="userclientid"></param>
+            <returns></returns>
         </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService">
             <summary>
@@ -799,6 +1124,69 @@
             ModifyVisitorById
             </summary>
             <param name="uid"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.QueueService">
+            <summary>
+            Queue service implementation
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.QueueService.#ctor(Devon4Net.Domain.UnitOfWork.UnitOfWork.IUnitOfWork{Devon4Net.WebAPI.Implementation.Domain.Database.jumpthequeueContext})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="uoW"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.QueueService.GetQueue(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.Queue,System.Boolean}})">
+            <summary>
+            Gets the Queue
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.QueueService.GetQueueById(System.Int32)">
+            <summary>
+            Gets the Queue by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.QueueService.CreateQueue(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String)">
+            <summary>
+            Creates the Queue
+            </summary>
+            <param name="name"></param>
+            <param name="logo"></param>
+            <param name="accesslink"></param>
+            <param name="minattentiontime"></param>
+            <param name="opentime"></param>
+            <param name="closetime"></param>
+            <param name="started"></param>
+            <param name="closed"></param>
+            <param name="userclientid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.QueueService.DeleteQueueById(System.Int32)">
+            <summary>
+            Deletes the Queue by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.QueueService.ModifyQueueById(System.Int32,System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String)">
+            <summary>
+            Modifies te state of the Queue by id
+            </summary>
+            <param name="id"></param>
+            <param name="name"></param>
+            <param name="logo"></param>
+            <param name="accesslink"></param>
+            <param name="minattentiontime"></param>
+            <param name="opentime"></param>
+            <param name="closetime"></param>
+            <param name="started"></param>
+            <param name="closed"></param>
+            <param name="userclientid"></param>
             <returns></returns>
         </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService">
@@ -1248,6 +1636,58 @@
             <param name="services"></param>
             <param name="configuration"></param>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Data.Repositories.AccessCodeRepository">
+            <summary>
+            Repository implementation for the AccessCode
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.AccessCodeRepository.#ctor(Devon4Net.WebAPI.Implementation.Domain.Database.jumpthequeueContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.AccessCodeRepository.GetAccessCode(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.AccessCode,System.Boolean}})">
+            <summary>
+            Get TODO method
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.AccessCodeRepository.GetAccessCodeByCode(System.String)">
+            <summary>
+            Gets the TODO by id
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.AccessCodeRepository.GetAccessCodeByVisitorAndQueue(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Gets the AccessCode by queue id
+            </summary>
+            <param name="queueid"></param>
+            <param name="visitoruid"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.AccessCodeRepository.GetLastAccessCodeByQueue(System.Nullable{System.Int32})">
+            <summary>
+            Gets the TODO by id
+            </summary>
+            <param name="queueid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.AccessCodeRepository.Create(System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Devon4Net.WebAPI.Implementation.Domain.Entities.Status_t,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Creates the TODO
+            </summary>
+            <param name="code"></param>
+            <param name="createdtime"></param>
+            <param name="endtime"></param>
+            <param name="status"></param>
+            <param name="visitoruid"></param>
+            <param name="queueId"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Devon4Net.WebAPI.Implementation.Data.Repositories.AccessCodeRepository.DeleteAccessCodeByCode(System.String)" -->
         <member name="T:Devon4Net.WebAPI.Implementation.Data.Repositories.EmployeeRepository">
             <summary>
             Repository implementation for the Employee
@@ -1283,6 +1723,60 @@
             <returns></returns>
         </member>
         <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.EmployeeRepository.DeleteEmployeeById(System.Int64)">
+            <summary>
+            Deletes the TODO by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Data.Repositories.QueueRepository">
+            <summary>
+            Repository implementation for the Queue
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.QueueRepository.#ctor(Devon4Net.WebAPI.Implementation.Domain.Database.jumpthequeueContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.QueueRepository.GetQueue(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.Queue,System.Boolean}})">
+            <summary>
+            Get TODO method
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.QueueRepository.GetQueueByClientId(System.String,System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.Queue,System.Boolean}})">
+            <summary>
+            Gets the Queues by clientId
+            </summary>
+            <param name="clientid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.QueueRepository.GetQueueById(System.Int32)">
+            <summary>
+            Gets the TODO by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.QueueRepository.Create(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String)">
+            <summary>
+            Creates the TODO
+            </summary>
+            <param name="name"></param>
+            <param name="logo"></param>
+            <param name="accesslink"></param>
+            <param name="minattentiontime"></param>
+            <param name="opentime"></param>
+            <param name="closetime"></param>
+            <param name="started"></param>ç
+            <param name="closed"></param>
+            <param name="userclientid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Data.Repositories.QueueRepository.DeleteQueueById(System.Int32)">
             <summary>
             Deletes the TODO by id
             </summary>
@@ -1508,6 +2002,58 @@
             Done
             </summary>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IAccessCodeRepository">
+            <summary>
+            AccessCodeRepository interface
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IAccessCodeRepository.GetAccessCode(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.AccessCode,System.Boolean}})">
+            <summary>
+            GetAccessCode
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IAccessCodeRepository.GetAccessCodeByCode(System.String)">
+            <summary>
+            GetAccessCodeById
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IAccessCodeRepository.GetAccessCodeByVisitorAndQueue(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Gets the AccessCode by queue id
+            </summary>
+            <param name="queueid"></param>
+            <param name="visitoruid"></param>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IAccessCodeRepository.GetLastAccessCodeByQueue(System.Nullable{System.Int32})">
+            <summary>
+            GetAccessCodeByQueue
+            </summary>
+            <param name="queueid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IAccessCodeRepository.Create(System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Devon4Net.WebAPI.Implementation.Domain.Entities.Status_t,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Create
+            </summary>
+            <param name="code"></param>
+            <param name="createdtime"></param>
+            <param name="endtime"></param>
+            <param name="status"></param>
+            <param name="visitoruid"></param>
+            <param name="queueId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IAccessCodeRepository.DeleteAccessCodeByCode(System.String)">
+            <summary>
+            DeleteAccessCodeById
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IEmployeeRepository">
             <summary>
             EmployeeRepository interface
@@ -1543,6 +2089,47 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IQueueRepository">
+            <summary>
+            QueueRepository interface
+            </summary>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IQueueRepository.GetQueue(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.Queue,System.Boolean}})">
+            <summary>
+            GetQueue
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IQueueRepository.GetQueueById(System.Int32)">
+            <summary>
+            GetQueueById
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IQueueRepository.Create(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.String)">
+            <summary>
+            Create
+            </summary>
+            <param name="name"></param>
+            <param name="logo"></param>
+            <param name="accesslink"></param>
+            <param name="minattentiontime"></param>
+            <param name="opentime"></param>
+            <param name="closetime"></param>
+            <param name="started"></param>ç
+            <param name="closed"></param>
+            <param name="userclientid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.IQueueRepository.DeleteQueueById(System.Int32)">
+            <summary>
+            DeleteQueueById
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.ITodoRepository">
             <summary>
             TodoRepository interface
@@ -1550,7 +2137,7 @@
         </member>
         <member name="M:Devon4Net.WebAPI.Implementation.Domain.RepositoryInterfaces.ITodoRepository.GetTodo(System.Linq.Expressions.Expression{System.Func{Devon4Net.WebAPI.Implementation.Domain.Entities.Todos,System.Boolean}})">
             <summary>
-            
+            GetTodo
             </summary>
             <param name="predicate"></param>
             <returns></returns>

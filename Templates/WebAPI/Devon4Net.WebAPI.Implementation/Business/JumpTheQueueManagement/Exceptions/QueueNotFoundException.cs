@@ -7,15 +7,15 @@ using System.Text;
 namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Exceptions
 {
     /// <summary>
-    /// Custom exception UserNotFoundException
+    /// Custom exception QueueNotFoundException
     /// </summary>
     [Serializable]
-    public class RoleBadException : Exception, IWebApiException
+    public class QueueNotFoundException : Exception, IWebApiException
     {
         /// <summary>
         /// The forced http status code to be fired on the exception manager
         /// </summary>
-        public int StatusCode => StatusCodes.Status400BadRequest;
+        public int StatusCode => StatusCodes.Status404NotFound;
 
         /// <summary>
         /// Show the message on the response?
@@ -23,17 +23,17 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Except
         public bool ShowMessage => true;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RoleBadException"/> class.
+        /// Initializes a new instance of the <see cref="QueueNotFoundException"/> class.
         /// </summary>
-        public RoleBadException()
+        public QueueNotFoundException()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RoleBadException"/> class.
+        /// Initializes a new instance of the <see cref="QueueNotFoundException"/> class.
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
-        public RoleBadException(string message)
+        public QueueNotFoundException(string message)
             : base(message)
         {
         }

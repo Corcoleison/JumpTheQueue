@@ -13,14 +13,14 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Conver
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public static UserDto ModelToDto(User item)
+        public static UserDto ModelToDto(User itemUser)
         {
-            if (item == null) return new UserDto();
+            if (itemUser == null) return new UserDto();
 
             return new UserDto
             {
-                Clientid = item.Clientid,
-                Role = item.Role.ToString(),
+                Clientid = itemUser.Clientid,
+                Role = itemUser.Role.ToString(),
             };
         }
 
