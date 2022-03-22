@@ -1,4 +1,5 @@
 using Devon4Net.Application.WebAPI.Configuration;
+using Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Hubs;
 using Devon4Net.WebAPI.Implementation.Configure;
 using Devon4Net.WebAPI.Implementation.Domain.Database;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +38,17 @@ namespace Devon4Net.Application.WebAPI
             services.AddOptions();
             services.AddMvc(option => option.EnableEndpointRouting = false)
                 .AddJsonOptions(options => {options.JsonSerializerOptions.IgnoreNullValues = true;});
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                    .AllowAnyHeader()
+                    .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD")
+                    .AllowCredentials();
+                });
+            });
         }
 
         /// <summary>
@@ -51,7 +63,12 @@ namespace Devon4Net.Application.WebAPI
             app.ConfigureDevonFw();
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseCors();
             app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHub<ColaHub>("/colahub");
+            });
             app.UseAuthentication();
             app.UseMvc();
         }

@@ -21,6 +21,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
     public class QueueService: Service<jumpthequeueContext>, IQueueService
     {
         private readonly IQueueRepository _QueueRepository;
+        private readonly IAccessCodeRepository _AccessCodeRepository;
 
         /// <summary>
         /// Constructor
@@ -29,6 +30,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         public QueueService(IUnitOfWork<jumpthequeueContext> uoW) : base(uoW)
         {
             _QueueRepository = uoW.Repository<IQueueRepository>();
+            _AccessCodeRepository = uoW.Repository<IAccessCodeRepository>();
         }
 
         /// <summary>
@@ -132,6 +134,31 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
             Queue.UserClientid = userclientid;
 
             return await _QueueRepository.Update(Queue).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<string> NextAttendedTicketByName(string name)
+        {
+            var cola = await _QueueRepository.GetFirstOrDefault(t => t.Name == name).ConfigureAwait(false);
+            AccessCode attendedAccessCode = null;
+            var accessCodeList = await _AccessCodeRepository.GetAccessCode(t => t.Id == cola.Id).ConfigureAwait(false);
+            foreach(var accessC in accessCodeList)
+            {
+                if(accessC.Endtime == null && accessC.Createdtime != null && accessC.Status != Status_t.attended)
+                {
+                    accessC.Status = Status_t.attended;
+                    accessC.Endtime = DateTime.Now.TimeOfDay;
+                    await _AccessCodeRepository.Update(accessC).ConfigureAwait(false);
+                    attendedAccessCode = accessC;
+                    break;
+                }
+            }
+            return attendedAccessCode.Code;
+
         }
     }
 }
