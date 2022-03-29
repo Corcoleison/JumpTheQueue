@@ -97,5 +97,16 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Contro
             }
             return Ok(await _AccessCodeService.ModifyAccessCodeByCode(AccessCodeDto.Code, AccessCodeDto.Createdtime, AccessCodeDto.Endtime, AccessCodeDto.Status, AccessCodeDto.VisitorUid, AccessCodeDto.QueueId).ConfigureAwait(false));
         }
+
+        /// <summary>
+        /// Get the Last Access Code
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("GetLastAccessCode")]
+        public async Task<ActionResult> GetLastAccessCode(int id)
+        {
+            return Ok(await _AccessCodeService.GetLastAccessCodeByQueue(id).ConfigureAwait(false));
+        }
     }
 }

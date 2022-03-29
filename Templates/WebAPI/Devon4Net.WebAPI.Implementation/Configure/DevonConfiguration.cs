@@ -47,6 +47,7 @@ namespace Devon4Net.WebAPI.Implementation.Configure
             SetupDatabase(ref services, ref configuration);
             SetupJwtPolicies(ref services);
             SetupFluentValidators(ref services);
+            SetupSignalR(ref services);
 
             var assemblyToScan = Assembly.GetAssembly(typeof(DevonConfiguration));
 
@@ -112,6 +113,11 @@ namespace Devon4Net.WebAPI.Implementation.Configure
         private static void SetupJwtPolicies(ref IServiceCollection services)
         {
             services.AddJwtPolicy(AuthConst.DevonSamplePolicy, ClaimTypes.Role, AuthConst.DevonSampleUserRole);
+        }
+
+        private static void SetupSignalR(ref IServiceCollection services)
+        {
+            services.AddSignalR();
         }
     }
 }

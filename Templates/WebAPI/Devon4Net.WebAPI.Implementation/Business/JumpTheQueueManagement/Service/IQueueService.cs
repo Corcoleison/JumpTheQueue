@@ -62,5 +62,26 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <param name="userclientid"></param>
         /// <returns></returns>
         Task<Queue> ModifyQueueById(int id,string name, string logo, string accesslink, int? minattentiontime, string opentime, string closetime, bool? started, bool? closed, string userclientid);
+
+        /// <summary>
+        /// Show the attended ticket
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Task<string> NextAttendedTicketByName(string name);
+
+        /// <summary>
+        /// Starts queue
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Task<IEnumerable<AccessCodeDto>> StartQueue(string name);
+
+        /// <summary>
+        /// Get all acces codes by id
+        /// </summary>
+        /// <param name="queueid"></param>
+        /// <returns></returns>
+        Task<IEnumerable<AccessCodeDto>> GetAllAccessCodeByQueueId(int queueid);
     }
 }

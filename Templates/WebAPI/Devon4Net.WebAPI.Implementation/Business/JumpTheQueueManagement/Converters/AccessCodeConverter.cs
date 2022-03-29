@@ -21,8 +21,9 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Conver
             {
                 Id = item.Id,
                 Code = item.Code,
-                Createdtime = item.Createdtime.HasValue ? item.Createdtime.Value.ToString(@"hh\:mm") : "<not available>",
-                Endtime = item.Endtime.HasValue ? item.Endtime.Value.ToString(@"hh\:mm") : "<not available>",
+                Createdtime = item.Createdtime.HasValue ? item.Createdtime.Value.ToString(@"hh\:mm") : null,
+                StartTime = item.StartTime.HasValue ? item.StartTime.Value.ToString(@"hh\:mm") : null,
+                Endtime = item.Endtime.HasValue ? item.Endtime.Value.ToString(@"hh\:mm") : null,
                 Status = item.Status.ToString(),
                 VisitorUid = item.VisitorUid,
                 QueueId = item.QueueId

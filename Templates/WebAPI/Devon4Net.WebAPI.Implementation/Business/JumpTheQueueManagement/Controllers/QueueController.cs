@@ -3,10 +3,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Devon4Net.Infrastructure.Log;
 using Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Dto;
+using Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Hubs;
 using Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers
 {
@@ -16,17 +18,27 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Contro
     [ApiController]
     [Route("[controller]")]
     [EnableCors("CorsPolicy")]
-    public class QueueController: ControllerBase
+    public class QueueController : ControllerBase
     {
         private readonly IQueueService _QueueService;
+        private readonly IHubContext<ColaHub> _hubContext;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="QueueService"></param>
-        public QueueController( IQueueService QueueService)
+        public QueueController(IQueueService QueueService, IHubContext<ColaHub> hubContext)
         {
             _QueueService = QueueService;
+            _hubContext = hubContext;
+        }
+
+        
+        [HttpPost("{id}/next")]
+        public ActionResult Test1(string id)
+        {
+            _hubContext.Clients.Group(id).SendAsync("receiveNext", "Q001");
+            return Ok();
         }
 
 
@@ -94,6 +106,49 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Contro
                 return BadRequest("The id of the Queue must be provided");
             }
             return Ok(await _QueueService.ModifyQueueById(QueueDto.Id, QueueDto.Name, QueueDto.Logo, QueueDto.Accesslink, QueueDto.Minattentiontime, QueueDto.Opentime, QueueDto.Closetime, QueueDto.Started, QueueDto.Closed, QueueDto.UserClientid).ConfigureAwait(false));
+        }
+
+        /// <summary>
+        /// Gets the attendedTicket of a queue
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{QueueName}/next")]
+        public async Task<ActionResult> NextAttendedTicket(string QueueName)
+        {
+            Devon4NetLogger.Debug("Executing GetAttendedTicket from controller QueueController");
+            var attendedTicket = await _QueueService.NextAttendedTicketByName(QueueName).ConfigureAwait(false);
+            await _hubContext.Clients.Group("queue1").SendAsync("receiveNext", attendedTicket).ConfigureAwait(false);
+            return Ok(attendedTicket);
+        }
+
+        /// <summary>
+        /// Start a queue
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{QueueName}/start")]
+        public async Task<ActionResult> StartQueue(string QueueName)
+        {
+            Devon4NetLogger.Debug("Executing GetAttendedTicket from controller QueueController");
+            var accesCodes = await _QueueService.StartQueue(QueueName).ConfigureAwait(false);
+            if (accesCodes == null)
+            {
+                return BadRequest("Unable to start Queue");
+            }
+            //await _hubContext.Clients.Group(QueueName).SendAsync("startQueue", QueueName).ConfigureAwait(false);
+            return Ok(accesCodes);
+        }
+
+
+        /// <summary>
+        /// Get all the access codes by queueid
+        /// </summary>
+        /// <param name="Queueid"></param>
+        /// <returns></returns>
+        [HttpGet("{Queueid}/getAllAccessCodes")]
+        public async Task<ActionResult> GetAllAccessCodeByQueueId(int Queueid)
+        {
+            Devon4NetLogger.Debug("Executing GetAttendedTicket from controller QueueController");
+            return Ok(await _QueueService.GetAllAccessCodeByQueueId(Queueid).ConfigureAwait(false));
         }
     }
 }

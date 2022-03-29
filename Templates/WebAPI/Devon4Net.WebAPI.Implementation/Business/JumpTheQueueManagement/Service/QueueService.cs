@@ -21,6 +21,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
     public class QueueService: Service<jumpthequeueContext>, IQueueService
     {
         private readonly IQueueRepository _QueueRepository;
+        private readonly IAccessCodeRepository _AccessCodeRepository;
 
         /// <summary>
         /// Constructor
@@ -29,6 +30,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         public QueueService(IUnitOfWork<jumpthequeueContext> uoW) : base(uoW)
         {
             _QueueRepository = uoW.Repository<IQueueRepository>();
+            _AccessCodeRepository = uoW.Repository<IAccessCodeRepository>();
         }
 
         /// <summary>
@@ -132,6 +134,83 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
             Queue.UserClientid = userclientid;
 
             return await _QueueRepository.Update(Queue).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Choose next attended Ticket
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<string> NextAttendedTicketByName(string name)
+        {
+            var cola = await _QueueRepository.GetFirstOrDefault(t => t.Name == name).ConfigureAwait(false);
+            AccessCode attendedAccessCode = null;
+            var accessCodeList = await _AccessCodeRepository.GetAccessCode(t => t.QueueId == cola.Id).ConfigureAwait(false);
+            var firstAccessCode = accessCodeList.ToList().FirstOrDefault(p => p.Status != Status_t.attended);
+            if (firstAccessCode == null)
+            {
+                return "All the tickets have been attended";
+            }
+            if (firstAccessCode.Status == Status_t.attending)
+            {
+                firstAccessCode.Endtime = DateTime.Now.TimeOfDay;
+                firstAccessCode.Status = Status_t.attended;
+                await _AccessCodeRepository.Update(firstAccessCode).ConfigureAwait(false);
+                accessCodeList.Remove(firstAccessCode);
+            }
+            firstAccessCode = accessCodeList.ToList().FirstOrDefault(p => p.Status != Status_t.attended);
+            if(firstAccessCode == null)
+            {
+                return "All the tickets have been attended";
+            }
+            if (firstAccessCode.Endtime == null && firstAccessCode.Createdtime != null && firstAccessCode.Status != Status_t.skipped)
+            {
+                firstAccessCode.Status = Status_t.attending;
+                firstAccessCode.StartTime = DateTime.Now.TimeOfDay;
+                await _AccessCodeRepository.Update(firstAccessCode).ConfigureAwait(false);
+                attendedAccessCode = firstAccessCode;
+            }
+            if(attendedAccessCode == null)
+            {
+                throw new ArgumentException("Nex attended Access Code can't be retrieve ");
+            }
+            return attendedAccessCode.Code;
+        }
+
+        /// <summary>
+        /// Starts the queue
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<AccessCodeDto>> StartQueue(string name)
+        {
+            var cola = await _QueueRepository.GetFirstOrDefault(t => t.Name == name).ConfigureAwait(false);
+            if (cola.Started == true)
+            {
+                return null;
+            }
+            cola.Started = true;
+            await _QueueRepository.Update(cola).ConfigureAwait(false);
+            var accessCodeList = await _AccessCodeRepository.GetAccessCode(t => t.QueueId == cola.Id).ConfigureAwait(false);
+            foreach(var ac in accessCodeList)if(ac.Status== Status_t.notStarted)
+            {
+                ac.Status = Status_t.waiting;
+                await _AccessCodeRepository.Update(ac).ConfigureAwait(false);
+            }
+            await NextAttendedTicketByName(name).ConfigureAwait(false);
+            return await GetAllAccessCodeByQueueId(cola.Id).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Gets the AccessCode by queue id
+        /// </summary>
+        /// <param name="queueid"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<AccessCodeDto>> GetAllAccessCodeByQueueId(int queueid)
+        {
+            Devon4NetLogger.Debug($"GetAccessCodeById method from service AccessCodeervice with value : {queueid}");
+            var result = await _AccessCodeRepository.GetAccessCode(t => t.QueueId == queueid).ConfigureAwait(false);
+            return result.Select(AccessCodeConverter.ModelToDto);
         }
     }
 }
