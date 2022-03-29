@@ -120,5 +120,35 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Contro
             await _hubContext.Clients.Group("queue1").SendAsync("receiveNext", attendedTicket).ConfigureAwait(false);
             return Ok(attendedTicket);
         }
+
+        /// <summary>
+        /// Start a queue
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{QueueName}/start")]
+        public async Task<ActionResult> StartQueue(string QueueName)
+        {
+            Devon4NetLogger.Debug("Executing GetAttendedTicket from controller QueueController");
+            var accesCodes = await _QueueService.StartQueue(QueueName).ConfigureAwait(false);
+            if (accesCodes == null)
+            {
+                return BadRequest("Unable to start Queue");
+            }
+            //await _hubContext.Clients.Group(QueueName).SendAsync("startQueue", QueueName).ConfigureAwait(false);
+            return Ok(accesCodes);
+        }
+
+
+        /// <summary>
+        /// Get all the access codes by queueid
+        /// </summary>
+        /// <param name="Queueid"></param>
+        /// <returns></returns>
+        [HttpGet("{Queueid}/getAllAccessCodes")]
+        public async Task<ActionResult> GetAllAccessCodeByQueueId(int Queueid)
+        {
+            Devon4NetLogger.Debug("Executing GetAttendedTicket from controller QueueController");
+            return Ok(await _QueueService.GetAllAccessCodeByQueueId(Queueid).ConfigureAwait(false));
+        }
     }
 }

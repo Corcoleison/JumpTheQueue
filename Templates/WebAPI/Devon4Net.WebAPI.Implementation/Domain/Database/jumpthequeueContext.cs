@@ -54,6 +54,10 @@ namespace Devon4Net.WebAPI.Implementation
                     .HasColumnName("endtime")
                     .HasColumnType("time without time zone");
 
+                entity.Property(e => e.StartTime)
+                    .HasColumnName("starttime")
+                    .HasColumnType("time without time zone");
+
                 entity.Property(e => e.QueueId).HasColumnName("queue_id");
 
                 entity.Property(e => e.Status)

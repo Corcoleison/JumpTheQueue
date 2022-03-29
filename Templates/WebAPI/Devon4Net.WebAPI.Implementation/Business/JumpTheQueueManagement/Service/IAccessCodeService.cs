@@ -67,5 +67,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <param name="queueId"></param>
         /// <returns></returns>
         Task<AccessCode> ModifyAccessCodeByCode(string code, string createdtime, string endtime, string status, Guid visitoruid, int queueId);
+
+       
     }
 }

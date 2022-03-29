@@ -69,5 +69,19 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// <param name="name"></param>
         /// <returns></returns>
         Task<string> NextAttendedTicketByName(string name);
+
+        /// <summary>
+        /// Starts queue
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Task<IEnumerable<AccessCodeDto>> StartQueue(string name);
+
+        /// <summary>
+        /// Get all acces codes by id
+        /// </summary>
+        /// <param name="queueid"></param>
+        /// <returns></returns>
+        Task<IEnumerable<AccessCodeDto>> GetAllAccessCodeByQueueId(int queueid);
     }
 }

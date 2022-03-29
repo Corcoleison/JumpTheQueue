@@ -561,6 +561,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.AccessCodeController.GetLastAccessCode(System.Int32)">
+            <summary>
+            Get the Last Access Code
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.QueueController">
             <summary>
             Queues controller
@@ -601,6 +608,19 @@
             <summary>
             Gets the attendedTicket of a queue
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.QueueController.StartQueue(System.String)">
+            <summary>
+            Start a queue
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.QueueController.GetAllAccessCodeByQueueId(System.Int32)">
+            <summary>
+            Get all the access codes by queueid
+            </summary>
+            <param name="Queueid"></param>
             <returns></returns>
         </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Controllers.UserController">
@@ -1057,6 +1077,20 @@
             <param name="name"></param>
             <returns></returns>
         </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IQueueService.StartQueue(System.String)">
+            <summary>
+            Starts queue
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IQueueService.GetAllAccessCodeByQueueId(System.Int32)">
+            <summary>
+            Get all acces codes by id
+            </summary>
+            <param name="queueid"></param>
+            <returns></returns>
+        </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.IUserService">
             <summary>
             IUserService
@@ -1204,9 +1238,23 @@
         </member>
         <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.QueueService.NextAttendedTicketByName(System.String)">
             <summary>
-            
+            Choose next attended Ticket
             </summary>
             <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.QueueService.StartQueue(System.String)">
+            <summary>
+            Starts the queue
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.QueueService.GetAllAccessCodeByQueueId(System.Int32)">
+            <summary>
+            Gets the AccessCode by queue id
+            </summary>
+            <param name="queueid"></param>
             <returns></returns>
         </member>
         <member name="T:Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Service.UserService">
