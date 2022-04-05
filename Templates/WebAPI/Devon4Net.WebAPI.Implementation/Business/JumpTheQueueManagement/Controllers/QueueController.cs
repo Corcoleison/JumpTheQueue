@@ -117,7 +117,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Contro
         {
             Devon4NetLogger.Debug("Executing GetAttendedTicket from controller QueueController");
             var attendedTicket = await _QueueService.NextAttendedTicketByName(QueueName).ConfigureAwait(false);
-            await _hubContext.Clients.Group("queue1").SendAsync("receiveNext", attendedTicket).ConfigureAwait(false);
+            await _hubContext.Clients.Group(QueueName).SendAsync("receiveNext", attendedTicket).ConfigureAwait(false);
             return Ok(attendedTicket);
         }
 
@@ -129,13 +129,18 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Contro
         public async Task<ActionResult> StartQueue(string QueueName)
         {
             Devon4NetLogger.Debug("Executing GetAttendedTicket from controller QueueController");
-            var accesCodes = await _QueueService.StartQueue(QueueName).ConfigureAwait(false);
-            if (accesCodes == null)
+            var attendedAccessCode = await _QueueService.StartQueue(QueueName).ConfigureAwait(false);
+            if (attendedAccessCode == null)
             {
                 return BadRequest("Unable to start Queue");
             }
-            //await _hubContext.Clients.Group(QueueName).SendAsync("startQueue", QueueName).ConfigureAwait(false);
-            return Ok(accesCodes);
+            else
+            {
+                await _hubContext.Clients.Group(QueueName).SendAsync("startQueue", QueueName).ConfigureAwait(false);
+                await _hubContext.Clients.Group(QueueName).SendAsync("receiveNext", attendedAccessCode).ConfigureAwait(false);
+            }
+            var message = QueueName + "started, first attended is " + attendedAccessCode;
+            return Ok(message);
         }
 
 

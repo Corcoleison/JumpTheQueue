@@ -182,7 +182,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<AccessCodeDto>> StartQueue(string name)
+        public async Task<string> StartQueue(string name)
         {
             var cola = await _QueueRepository.GetFirstOrDefault(t => t.Name == name).ConfigureAwait(false);
             if (cola.Started == true)
@@ -197,8 +197,8 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
                 ac.Status = Status_t.waiting;
                 await _AccessCodeRepository.Update(ac).ConfigureAwait(false);
             }
-            await NextAttendedTicketByName(name).ConfigureAwait(false);
-            return await GetAllAccessCodeByQueueId(cola.Id).ConfigureAwait(false);
+            var nextAttended= await NextAttendedTicketByName(name).ConfigureAwait(false);
+            return nextAttended;
         }
 
         /// <summary>

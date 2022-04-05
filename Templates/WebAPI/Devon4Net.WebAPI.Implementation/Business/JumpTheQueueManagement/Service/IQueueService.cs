@@ -75,7 +75,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        Task<IEnumerable<AccessCodeDto>> StartQueue(string name);
+        Task<string> StartQueue(string name);
 
         /// <summary>
         /// Get all acces codes by id
