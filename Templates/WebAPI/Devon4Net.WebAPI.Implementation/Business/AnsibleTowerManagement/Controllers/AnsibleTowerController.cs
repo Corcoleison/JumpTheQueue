@@ -24,6 +24,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.AnsibleTowerManagement.Contro
     /// </summary>
     [ApiController]
     [Route("[controller]")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class AnsibleTowerController : ControllerBase
     {
         private IAnsibleTowerHandler AnsibleTowerHandler { get; set; }

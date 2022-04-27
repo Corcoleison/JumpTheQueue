@@ -14,6 +14,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.CyberArkManagement
 {
     [ApiController]
     [Route("[controller]")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class CyberArkController : ControllerBase
     {
         private ICyberArkHandler CyberArkHandler { get; }

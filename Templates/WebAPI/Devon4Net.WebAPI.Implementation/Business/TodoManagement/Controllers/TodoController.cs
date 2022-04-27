@@ -15,6 +15,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.TodoManagement.Controllers
     [EnableCors("CorsPolicy")]
     [ApiController]
     [Route("[controller]")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class TodoController: ControllerBase
     {
         private readonly ITodoService _todoService;

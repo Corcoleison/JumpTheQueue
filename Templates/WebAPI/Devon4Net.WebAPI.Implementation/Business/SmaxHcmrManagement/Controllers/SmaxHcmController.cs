@@ -26,6 +26,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.SmaxHcmrManagement.Controller
     [ApiController]
     [Route("[controller]")]
     [EnableCors("CorsPolicy")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class SmaxHcmController : ControllerBase
     {
         private ISmaxHcmHandler SmaxHcmHandler { get; set; }

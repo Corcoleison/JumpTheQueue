@@ -16,6 +16,8 @@ namespace Devon4Net.WebAPI.Implementation.Business.EmployeeManagement.Controller
     [ApiController]
     [Route("[controller]")]
     [EnableCors("CorsPolicy")]
+    [ApiExplorerSettings(IgnoreApi = true)]
+
     public class EmployeeController: ControllerBase
     {
         private readonly IEmployeeService _employeeService;

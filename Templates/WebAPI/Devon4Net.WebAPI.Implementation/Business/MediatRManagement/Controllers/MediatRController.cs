@@ -17,6 +17,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.MediatRManagement.Controllers
     [ApiController]
     [Route("[controller]")]
     [EnableCors("CorsPolicy")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class MediatRController : ControllerBase
     {
         private IMediatRHandler MediatRHandler { get; set; }

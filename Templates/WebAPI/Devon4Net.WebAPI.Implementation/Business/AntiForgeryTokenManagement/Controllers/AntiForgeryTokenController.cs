@@ -13,6 +13,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.AntiForgeryTokenManagement.Co
     [EnableCors("CorsPolicy")]
     [ApiController]
     [Route("[controller]")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class AntiForgeryTokenController : ControllerBase
     {
         private readonly IAntiforgery _antiForgeryToken;

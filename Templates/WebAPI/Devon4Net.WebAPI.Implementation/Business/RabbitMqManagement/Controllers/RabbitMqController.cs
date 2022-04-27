@@ -19,6 +19,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.RabbitMqManagement.Controller
     [ApiController]
     [Route("[controller]")]
     [EnableCors("CorsPolicy")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class RabbitMqController : ControllerBase
     {
         private TodoRabbitMqHandler TodoRabbitMqHandler { get; set; }
