@@ -76,7 +76,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
         {
             Devon4NetLogger.Debug($"GetAccessCodeById method from service AccessCodeervice with value : {queueid}");
             var list= await _AccessCodeRepository.GetAccessCode(t => t.QueueId == queueid).ConfigureAwait(false);
-            var lastAC = list.OrderByDescending(x => x.Code).ToList().FirstOrDefault();
+            var lastAC = list?.OrderByDescending(x => x.Code).ToList().FirstOrDefault();
             return lastAC;
         }
 
@@ -91,7 +91,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
             Guid visitoruid = Guid.NewGuid();
             await _VisitorRepository.Create(visitoruid).ConfigureAwait(false);
             Devon4NetLogger.Debug($"SetAccessCode method from service AccessCodeervice with values : {visitoruid} and {queueId}");
-            string code = await ChooseCodeAsync(visitoruid, queueId).ConfigureAwait(false);
+            string code = await ChooseCodeAsync(queueId).ConfigureAwait(false);
             Status_t statusCreated = Status_t.notStarted;
             if (string.IsNullOrEmpty(code) || string.IsNullOrWhiteSpace(statusCreated.ToString()))
             {
@@ -157,7 +157,7 @@ namespace Devon4Net.WebAPI.Implementation.Business.JumpTheQueueManagement.Servic
             return await _AccessCodeRepository.Update(AccessCode).ConfigureAwait(false);
         }
 
-        private async Task<string> ChooseCodeAsync(Guid visitoruid, int queueid)
+        private async Task<string> ChooseCodeAsync(int queueid)
         {
             Devon4NetLogger.Debug("Enters ChooseCodeAsync to choose next code");
             string resultCode = "Q001";
